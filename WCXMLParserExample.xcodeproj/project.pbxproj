@@ -13,6 +13,8 @@
 		082C56F7156C6D7E00D33E84 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 082C56F5156C6D7E00D33E84 /* InfoPlist.strings */; };
 		082C56F9156C6D7E00D33E84 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 082C56F8156C6D7E00D33E84 /* main.m */; };
 		082C56FD156C6D7E00D33E84 /* WCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 082C56FC156C6D7E00D33E84 /* WCAppDelegate.m */; };
+		082C5706156C6DC800D33E84 /* WCXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 082C5705156C6DC800D33E84 /* WCXMLParser.m */; };
+		082C5709156C6F6800D33E84 /* WCExampleTableControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 082C5708156C6F6800D33E84 /* WCExampleTableControllerViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,12 +22,16 @@
 		082C56EC156C6D7E00D33E84 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		082C56EE156C6D7E00D33E84 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		082C56F0156C6D7E00D33E84 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		082C56F4156C6D7E00D33E84 /* WCXMLParserExample-Info.plist */ = {isa = PBXFileReference; path = "WCXMLParserExample-Info.plist"; sourceTree = "<group>"; };
+		082C56F4156C6D7E00D33E84 /* WCXMLParserExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WCXMLParserExample-Info.plist"; sourceTree = "<group>"; };
 		082C56F6156C6D7E00D33E84 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		082C56F8156C6D7E00D33E84 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		082C56FA156C6D7E00D33E84 /* WCXMLParserExample-Prefix.pch */ = {isa = PBXFileReference; path = "WCXMLParserExample-Prefix.pch"; sourceTree = "<group>"; };
-		082C56FB156C6D7E00D33E84 /* WCAppDelegate.h */ = {isa = PBXFileReference; path = WCAppDelegate.h; sourceTree = "<group>"; };
+		082C56FA156C6D7E00D33E84 /* WCXMLParserExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WCXMLParserExample-Prefix.pch"; sourceTree = "<group>"; };
+		082C56FB156C6D7E00D33E84 /* WCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCAppDelegate.h; sourceTree = "<group>"; };
 		082C56FC156C6D7E00D33E84 /* WCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCAppDelegate.m; sourceTree = "<group>"; };
+		082C5704156C6DC800D33E84 /* WCXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCXMLParser.h; sourceTree = "<group>"; };
+		082C5705156C6DC800D33E84 /* WCXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCXMLParser.m; sourceTree = "<group>"; };
+		082C5707156C6F6800D33E84 /* WCExampleTableControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCExampleTableControllerViewController.h; sourceTree = "<group>"; };
+		082C5708156C6F6800D33E84 /* WCExampleTableControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCExampleTableControllerViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +51,7 @@
 		082C56DD156C6D7E00D33E84 = {
 			isa = PBXGroup;
 			children = (
+				082C5703156C6DC800D33E84 /* WCXMLParser */,
 				082C56F2156C6D7E00D33E84 /* WCXMLParserExample */,
 				082C56EB156C6D7E00D33E84 /* Frameworks */,
 				082C56E9156C6D7E00D33E84 /* Products */,
@@ -75,6 +82,8 @@
 				082C56FB156C6D7E00D33E84 /* WCAppDelegate.h */,
 				082C56FC156C6D7E00D33E84 /* WCAppDelegate.m */,
 				082C56F3156C6D7E00D33E84 /* Supporting Files */,
+				082C5707156C6F6800D33E84 /* WCExampleTableControllerViewController.h */,
+				082C5708156C6F6800D33E84 /* WCExampleTableControllerViewController.m */,
 			);
 			path = WCXMLParserExample;
 			sourceTree = "<group>";
@@ -88,6 +97,15 @@
 				082C56FA156C6D7E00D33E84 /* WCXMLParserExample-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		082C5703156C6DC800D33E84 /* WCXMLParser */ = {
+			isa = PBXGroup;
+			children = (
+				082C5704156C6DC800D33E84 /* WCXMLParser.h */,
+				082C5705156C6DC800D33E84 /* WCXMLParser.m */,
+			);
+			path = WCXMLParser;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -155,6 +173,8 @@
 			files = (
 				082C56F9156C6D7E00D33E84 /* main.m in Sources */,
 				082C56FD156C6D7E00D33E84 /* WCAppDelegate.m in Sources */,
+				082C5706156C6DC800D33E84 /* WCXMLParser.m in Sources */,
+				082C5709156C6F6800D33E84 /* WCExampleTableControllerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

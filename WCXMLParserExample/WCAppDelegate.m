@@ -7,16 +7,18 @@
 //
 
 #import "WCAppDelegate.h"
+#import "WCExampleTableControllerViewController.h"
 
 @implementation WCAppDelegate
-
 @synthesize window = _window;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
+    WCExampleTableControllerViewController *controller = [[WCExampleTableControllerViewController alloc] init];
+    
+    self.window                     = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController  = controller;
+    self.window.backgroundColor     = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
 }
