@@ -14,13 +14,12 @@
     NSMutableArray      *_resultsArray;
     NSMutableString     *_processingText;
 }
+
 - (void)initialize;
+
 @end
 
 @implementation WCXMLParser
-@synthesize successCallback = _successCallback;
-@synthesize errorCallback   = _errorCallback;
-@synthesize options         = _options;
 
 - (void)initialize
 {
@@ -62,6 +61,13 @@
 {
     [_parser parse];
 }
+
+- (void)stopParsing;
+{
+	[_parser abortParsing];
+}
+
+
 
 #pragma mark - NXMLParser Delegate Methods
 -(void)parserDidStartDocument:(NSXMLParser *)parser
@@ -106,6 +112,11 @@
     }
     
     [_resultsArray addObject:childDictionary];
+
+	if (self.elementStartedCallback)
+	{
+		self.elementStartedCallback(self, elementName, attributeDict);
+	}
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
@@ -115,15 +126,24 @@
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
+	NSString * resultingStringValue = nil;
+
     NSMutableDictionary *progressDictionary = [_resultsArray lastObject];
     if(_processingText.length > 0)
     {
         [progressDictionary setObject:_processingText forKey:@"text"];
+		resultingStringValue = _processingText;
+
         _processingText = nil;
         _processingText = [[NSMutableString alloc] init];
     }
     
     [_resultsArray removeLastObject];
+
+	if (self.elementEndedCallback)
+	{
+		self.elementEndedCallback(self, elementName, resultingStringValue);
+	}
 }
 
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
@@ -145,8 +165,22 @@
 #pragma mark - Simple Method
 + (void)parseWithParser:(NSXMLParser *)parser success:(WCXMLParserSuccessCallback)success failure:(WCXMLParserErrorCallback)failure
 {
-    
+    [self parseWithParser:parser success:success failure:failure elementStarted:nil elementEnded:nil];
 }
+
++ (void)parseWithParser:(NSXMLParser *)parser success:(WCXMLParserSuccessCallback)success failure:(WCXMLParserErrorCallback)failure elementStarted:(WCXMLParserElementStartedCallback)elementStarted elementEnded:(WCXMLParserElementEndedCallback)elementEnded;
+{
+	WCXMLParser * wcParser = [[WCXMLParser alloc] initWithParser:parser];
+	wcParser.successCallback = success;
+	wcParser.errorCallback = failure;
+	wcParser.elementStartedCallback = elementStarted;
+	wcParser.elementEndedCallback = elementEnded;
+
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [wcParser parse];
+    });
+}
+
 
 + (void)parseXMLString:(NSString *)string withOptions:(WCXMLParserOptions)options success:(WCXMLParserSuccessCallback)success failure:(WCXMLParserErrorCallback)failure
 {
